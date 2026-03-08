@@ -12,6 +12,7 @@ const loadingSpinner = document.getElementById("loading-spinner");
 
 let issuesData = [];
 
+
 function handleActiveTab(activeBtn) {
     [allBtn, openBtn, closedBtn].forEach(btn => btn.classList.remove("btn-primary"));
     activeBtn.classList.add("btn-primary");
@@ -32,7 +33,7 @@ function displayIssues(issues) {
     issuesCount.innerText = `${issues.length} Issues`;
 
     if (issues.length === 0) {
-        issuesContainer.innerHTML = <p class="col-span-full text-center text-gray-400 mt-10">No issues found.</p>;
+        issuesContainer.innerHTML = `<p class="col-span-full text-center text-gray-400 mt-10">No issues found.</p>`;
         return;
     }
 
@@ -49,8 +50,8 @@ function displayIssues(issues) {
                     <div class="p-2 rounded-full ${issue.status === 'open' ? 'bg-green-50' : 'bg-purple-50'}">
                         <svg class="w-5 h-5 ${issue.status === 'open' ? 'text-green-500' : 'text-purple-500'}" 
                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            ${issue.status === 'open' ? '<circle cx="12" cy="12" r="10" stroke-dasharray="4 4" />' : 
-                            '<g><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11"></polyline></g>'}
+                            ${issue.status === 'open' ? `<circle cx="12" cy="12" r="10" stroke-dasharray="4 4" />` : 
+                            `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11"></polyline>`}
                         </svg>
                     </div>
                     <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider
@@ -98,8 +99,8 @@ function showModal(issue) {
                 <div class="flex justify-between items-center">
                     <div class="p-2 rounded-full ${issue.status === 'open' ? 'bg-green-50' : 'bg-purple-50'}">
                         <svg class="w-6 h-6 ${issue.status === 'open' ? 'text-green-500' : 'text-purple-500'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            ${issue.status === 'open' ? '<circle cx="12" cy="12" r="10" stroke-dasharray="4 4" />' : 
-                            '<g><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11"></polyline></g>'}
+                            ${issue.status === 'open' ? `<circle cx="12" cy="12" r="10" stroke-dasharray="4 4" />` : 
+                            `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11"></polyline>`}
                         </svg>
                     </div>
                     <form method="dialog"><button class="btn btn-sm btn-circle btn-ghost">✕</button></form>
@@ -155,6 +156,7 @@ async function fetchAllIssues() {
     }
 }
 
+
 allBtn.addEventListener("click", () => {
     handleActiveTab(allBtn);
     toggleLoader(true);
@@ -184,6 +186,7 @@ closedBtn.addEventListener("click", () => {
     }, 400);
 });
 
+
 searchBtn.addEventListener("click", async () => {
     const text = searchInput.value.trim();
     if (!text) return;
@@ -206,5 +209,6 @@ searchBtn.addEventListener("click", async () => {
 searchInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") searchBtn.click();
 });
+
 
 fetchAllIssues();
