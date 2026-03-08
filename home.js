@@ -169,5 +169,27 @@ closedBtn.addEventListener("click", () => {
     }, 400);
 });
 
+searchBtn.addEventListener("click", async () => {
+    const text = searchInput.value.trim();
+    if (!text) return;
+
+    toggleLoader(true);
+    try {
+        const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`);
+        const data = await res.json();
+        displayIssues(data.data);
+    }
+    catch (error) {
+        console.error("Error searching issues:", error);
+    }
+    finally {
+        toggleLoader(false);
+    }
+});
+
+
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") searchBtn.click();
+});
 
 fetchAllIssues();
