@@ -12,6 +12,21 @@ const loadingSpinner = document.getElementById("loading-spinner");
 
 let issuesData = [];
 
+function handleActiveTab(activeBtn) {
+    [allBtn, openBtn, closedBtn].forEach(btn => btn.classList.remove("btn-primary"));
+    activeBtn.classList.add("btn-primary");
+}
+
+function toggleLoader(show) {
+    if (show) {
+        loadingSpinner.classList.remove("hidden");
+        issuesContainer.innerHTML = "";
+    } else {
+        loadingSpinner.classList.add("hidden");
+    }
+}
+
+
 function displayIssues(issues) {
     issuesContainer.innerHTML = "";
     issuesCount.innerText = `${issues.length} Issues`;
