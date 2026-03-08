@@ -140,5 +140,34 @@ async function fetchAllIssues() {
     }
 }
 
+allBtn.addEventListener("click", () => {
+    handleActiveTab(allBtn);
+    toggleLoader(true);
+    setTimeout(() => {
+        displayIssues(issuesData);
+        toggleLoader(false);
+    }, 400); 
+});
+
+openBtn.addEventListener("click", () => {
+    handleActiveTab(openBtn);
+    toggleLoader(true);
+    setTimeout(() => {
+        const openIssues = issuesData.filter(issue => issue.status === "open");
+        displayIssues(openIssues);
+        toggleLoader(false);
+    }, 400);
+});
+
+closedBtn.addEventListener("click", () => {
+    handleActiveTab(closedBtn);
+    toggleLoader(true);
+    setTimeout(() => {
+        const closedIssues = issuesData.filter(issue => issue.status === "closed");
+        displayIssues(closedIssues);
+        toggleLoader(false);
+    }, 400);
+});
+
 
 fetchAllIssues();
