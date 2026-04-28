@@ -9,7 +9,7 @@ Try it live:
 
 ## 📷 Screenshots
 
-![Issue Tracker Screenshot](screenshot.png)
+![Issue Tracker Screenshot](screenshot3.png)
 
 ---
 
